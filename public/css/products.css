@@ -1,0 +1,706 @@
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.banner img {
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.banner-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.banner-text p {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Filter/Sort Container */
+.filter-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    position: relative;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.product-header {
+    display: flex;
+    /* Changed justify-content from center to space-between
+       to push items to the ends. If you want only .menuu and .menu
+       at ends and title centered, consider keeping justify-content: center
+       and only using auto margins on menu/menuu.
+       However, if menuu and menu are the *only* flex items in bundle-header
+       besides the absolutely positioned title, then space-between works well.
+    */
+    justify-content: space-between; /* This will push the first and last flex items to the edges */
+    align-items: center;
+    background: linear-gradient(90deg, var(--background), var(--background));
+    color: var(--primary);
+    padding: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px var(--shadow);
+    margin-top: 0;
+    position: relative;
+}
+
+.product-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text);
+    position: absolute; /* This keeps it centrally aligned regardless of flex item flow */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.product-header .menu {
+    /* To push 'Filter By' (menu) to the far left */
+    margin-left: 0; /* Ensure no left margin */
+    margin-right: auto; /* This is the key change: pushes to the left */
+}
+
+.product-header .menuu {
+    /* To push 'Sort By' (menuu) to the far right */
+    margin-left: auto; /* This is the key change: pushes to the right */
+    margin-right: 0; /* Ensure no right margin */
+}
+
+/* Bundle Styles (rest of your CSS, unchanged) */
+.product-container {
+    padding: 2rem;
+}
+  .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 1rem;
+  }
+  
+  .product-left {
+      width: 70%;
+  }
+  
+  .product-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+  }
+  
+  .product-details {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+  }
+  
+  .product-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  }
+
+.header2 {
+    text-align: center;
+}
+
+#product-title {
+    font-family: 'BebasNeue-Regular', sans-serif;
+    font-size: 2rem;
+    color: #2d0036;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid var(--dark);
+    border-radius: 20px;
+    background-color: white;
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn:hover {
+    background-color: var(--light-gray);
+}
+
+.filter-btn .icon {
+    margin-right: 8px;
+}
+
+.sort-by-dropdown {
+    padding: 8px 10px;
+    border: 1px solid var(--dark);
+    border-radius: 20px;
+    background-color: white;
+    color: var(--dark);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Filter Sidebar */
+.filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: var(--background);
+    border-right: 1px solid var(--light-gray);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.filter-sidebar.active {
+    left: 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--error);
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.sidebar-menu li:hover {
+    background-color: #f5f5f5;
+    color: var(--primary);
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Empty state for no products after filtering */
+#empty-state-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 300px;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+#empty-state-message .empty-state-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+#empty-state-message .empty-state {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+#empty-state-message .empty-state .icon {
+    font-size: 3.5em;
+    color: var(--primary, #8ac7d9);
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+#empty-state-message .empty-state .text {
+    font-size: 1.1em;
+    color: #888;
+    font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+#empty-state-message .empty-state .subtext {
+    font-size: 0.95em;
+    color: #bbb;
+    font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+/* Flex wrapper for centering empty state */
+.empty-state-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure parent grid doesn't offset children */
+.products-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+:root {
+    --primary: #8ac7d9;
+    --secondary: #30a7cb;
+    --background: #ffffff;
+    --text: #333;
+    --hover: #007ba7;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* Card Styles */
+.Pcard {
+    --accent-color: var(--primary);
+    position: relative;
+    width: 240px;
+    background: var(--background);
+    border-radius: 1rem;
+    padding: 0.3rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 50px 30px -20px;
+    transition: all 0.5s ease-in-out;
+    margin: 1rem;
+}
+
+.Pcard .image-containerr {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 0.7rem;
+    border-top-right-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.Pcard .image-containerr img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: inherit;
+}
+
+.Pcard .image-containerr .svg {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+}
+
+.Pcard .image-containerr .price {
+    position: absolute;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    background: var(--background);
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.Pcard .favorite {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.Pcard .favorite input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.Pcard .favorite input:checked ~ svg {
+    animation: bouncing 0.5s;
+    fill: var(--secondary);
+    filter: drop-shadow(0px 3px 1px rgba(53, 53, 53, 0.14));
+}
+
+.Pcard .favorite svg {
+    fill: var(--text);
+}
+
+.card .content {
+    padding: 0px 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.Pcard .content .brand {
+    font-weight: 900;
+    color: var(--secondary);
+}
+
+.Pcard .content .product-name {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.Pcard .content .color-size-container {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #a8a8a8;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.Pcard .content .color-size-container > * {
+    flex: 1;
+}
+
+.Pcard .content .color-size-container .colors .colors-container {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    font-size: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color {
+    height: 14px;
+    position: relative;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color:hover .color-name {
+    display: block;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color a {
+    display: inline-block;
+    height: 100%;
+    aspect-ratio: 1;
+    border: 3px solid black;
+    border-radius: 50%;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color .color-name {
+    display: none;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    background: black;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color:first-child a {
+    border-color: #ffd426;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color:nth-child(2) a {
+    background: #144076;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color:nth-child(3) a {
+    border-color: #00b9ff;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .color:nth-child(4) a {
+    border-color: #ff6ba1;
+}
+
+.Pcard .content .color-size-container .colors .colors-container .active {
+    border-color: black;
+}
+
+.Pcard .content .color-size-container .sizes .size-container {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+
+.Pcard .content .color-size-container .sizes .size-container .size {
+    height: 14px;
+}
+
+.Pcard .content .color-size-container .sizes .size-container .size .size-radio {
+    cursor: pointer;
+}
+
+.Pcard .content .color-size-container .sizes .size-container .size .size-radio input {
+    display: none;
+}
+
+.Pcard .content .color-size-container .sizes .size-container .size .size-radio input:checked ~ .name {
+    background: var(--accent-color);
+    border-radius: 2rem 2rem 1.5rem 1.5rem;
+    color: white;
+}
+
+.Pcard .content .color-size-container .sizes .size-container .size .size-radio .name {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    aspect-ratio: 1.2/1;
+    text-decoration: none;
+    color: #484848;
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+.Pcard .content .rating {
+    color: #a8a8a8;
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Pcard .content .rating svg {
+    height: 12px;
+}
+
+.Pcard .button-container {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.Pcard .button-container .button {
+    border-radius: 1rem;
+    border: 1px solid var(--primary);
+    padding: 0.6rem 1rem;
+    background: var(--primary);
+    color: var(--background);
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Pcard .button-container .button:hover {
+    background: var(--hover);
+    color: var(--background);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Pcard .button-container .buy-button {
+    flex: auto;
+}
+
+.Pcard .button-container .cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.Pcard .button-container .cart-button:hover {
+    background: var(--hover);
+    transform: scale(1.1);
+}
+
+.Pcard .button-container .cart-button svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--background);
+}
+
+.Pcard:hover {
+    transform: scale(1.03);
+}
+
+@keyframes bouncing {
+    from, to {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(1.5, 2.1);
+    }
+
+    50% {
+        transform: scale(2.1, 1.5);
+    }
+
+    75% {
+        transform: scale(1.5, 2.05);
+    }
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary: #8ac7d9;
+    --secondary: #30a7cb;
+    --background: #ffffff;
+    --text: #333;
+    --hover: #007ba7;
+}
+
+body {
+    background-color: var(--background);
+    font-family: "Poppins", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+/* LAYOUT STRUCTURE */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* CARDS CONTAINER */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 100px auto 0;
+    max-width: 1200px;
+}
+
+.ftr-hdr {
+    color: var(--primary);
+    font-size: 25px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--secondary);
+}
+
+
+/* Pagination Controls */
+#pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+#pagination-controls button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--primary);
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#pagination-controls button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+#pagination-controls button.active {
+    background-color: var(--secondary);
+    color: var(--background);
+    font-weight: bold;
+    cursor: default;
+}

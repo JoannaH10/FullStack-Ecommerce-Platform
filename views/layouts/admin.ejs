@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel - <%= title %></title>
+
+    <link rel="icon" type="image/x-icon" href="/images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/admin-assets/css/adminPage.css">
+    <link rel="stylesheet" href="/admin-assets/css/dashboard.css">
+    <link rel="stylesheet" href="/admin-assets/css/products.css">
+    <link rel="stylesheet" href="/admin-assets/css/orders.css">
+    <link rel="stylesheet" href="/admin-assets/css/users.css">
+    <link rel="stylesheet" href="/admin-assets/css/c&c.css">
+    <link rel="stylesheet" href="/admin-assets/css/bundles.css">
+    <link rel="stylesheet" href="/admin-assets/css/reviews.css">
+
+    <%# Removed duplicate products.css link if already present in main.css or specific products.css %>
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <%- include('../partials/admin-sidebar') %>  <main class="admin-main">
+
+            <%- include('../partials/adminHeader') %>  <div class="content-wrapper">
+                <%- body %> 
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="/admin-assets/js/adminPage.js"></script>
+   
+    <script src="/admin-assets/js/productsAdmin.js"></script>
+    <script src="/admin-assets/js/bundleadmin.js"></script>
+    
+    <script>
+        const API_SNACK_PREFIX = "<%= process.env.API_URL || '/api/s1' %>"; 
+    </script>
+    <script src="/admin-assets/js/adminPage.js"></script>
+    <script src="/admin-assets/js/bundleadmin.js"></script>
+    <script src="/admin-assets/js/c&c.js"></script>
+    <script src="/admin-assets/js/order-admin.js"></script>
+    <script src="/admin-assets/js/productsAdmin.js"></script>
+    <script src="/admin-assets/js/reviews-admin.js"></script>
+    <script src="/admin-assets/js/user-admin.js"></script>
+    <script src="/admin-assets/js/reviews-admin.js"></script>
+
+</body>
+</html>

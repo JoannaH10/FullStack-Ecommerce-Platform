@@ -1,0 +1,177 @@
+/* Table Styles (general table styles, but essential for users table) */
+.table-container {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.table-controls {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  padding: 8px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  flex: 1;
+  max-width: 300px;
+  transition: var(--transition);
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 149, 195, 0.2);
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.table-actions button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-actions button:hover {
+  background-color: rgba(0, 149, 195, 0.1);
+  color: var(--primary-color);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: #f8fafc;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.data-table tr:hover {
+  background-color: rgba(0, 149, 195, 0.03);
+}
+
+.status { /* Reused status styling for table cells */
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status.active {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: var(--success);
+}
+
+.status.inactive { /* Example for an inactive user status */
+  background-color: rgba(244, 67, 54, 0.15);
+  color: var(--danger);
+}
+
+/* Action buttons for table rows */
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  color: var(--primary-color);
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 149, 195, 0.1);
+}
+
+.delete-btn {
+  color: var(--danger);
+}
+
+.delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* Responsive styles for table elements */
+@media (max-width: 768px) {
+    .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .table-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* Add these styles to your users.css */
+.avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #757575;
+  font-size: 1.2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-dark);
+}

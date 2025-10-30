@@ -1,0 +1,285 @@
+<section class="homepage-carousel-container">
+    <div id="homepage-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <% if (carouselItems && carouselItems.length > 0) { %>
+                <% carouselItems.forEach((item, index) => { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                        <img class="carousel-image" src="<%= item.imageSrc %>" alt="<%= item.altText %>">
+                        <div class="carousel-caption-container d-flex flex-column align-items-center justify-content-center">
+                            <div class="carousel-caption-content">
+                                <h4 class="carousel-subtitle"><%= item.subtitle %></h4>
+                                <h1 class="carousel-title"><%= item.title %></h1>
+                                <a href="<%= item.buttonLink %>" class="carousel-btn btn-primary"><%= item.buttonText %></a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="carousel-item active d-flex justify-content-center align-items-center" style="min-height: 400px; background-color: #f0f0f0; color: #6c757d;">
+                    <div class="text-center">
+                        <h2>No exciting new snacks to display right now!</h2>
+                        <p>Please check back soon for delicious updates.</p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+        <a class="carousel-control-prev" href="#homepage-carousel" data-slide="prev">
+            <div class="carousel-nav-btn prev-btn">
+                <span class="carousel-control-prev-icon"></span>
+            </div>
+        </a>
+        <a class="carousel-control-next" href="#homepage-carousel" data-slide="next">
+            <div class="carousel-nav-btn next-btn">
+                <span class="carousel-control-next-icon"></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="trending-products">
+    <div class="container">
+        <h2>BEST SELLERS</h2>
+
+        <div class="slider-wrapper position-relative">
+            <button class="slide-btn prev-btn">&#10094;</button>
+
+            <div class="product-list d-flex" id="productList">
+                <% if (products && products.length > 0) { %>
+                    <% products.forEach(product => { %>
+                        <div class="circle-product" data-product-id="<%= product._id %>">
+                            <img src="<%= product.image %>" alt="<%= product.name %>" class="product-img">
+                            </div>
+                    <% }); %>
+                <% } else { %>
+                    <p>No best seller products available at the moment.</p>
+                <% } %>
+            </div>
+
+            <button class="slide-btn next-btn">&#10095;</button>
+        </div>
+    </div>
+</section>
+
+<div id="quickViewModal" class="quickViewModal">
+    <div class="quickViewModal-content"> <span class="close-button">&times;</span>
+        <div id="modal-product-details">
+            Loading product...
+        </div>
+    </div>
+</div>
+
+<section id="bundles" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-blue-600 mb-4">Snack Bundles</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Save big with our curated snack bundles from around the world</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 bundles-grid">
+            <% if (bundles && bundles.length > 0) { %>
+                <% bundles.forEach(function(bundle) { %>
+                    <div class="bundle-card">
+                        <div class="bundle-inner relative w-full h-96 rounded-xl shadow-lg">
+                            <div class="bundle-front absolute w-full h-full bg-blue-50 rounded-xl p-6 flex flex-col">
+                                <div class="flex-grow flex items-center justify-content-center">
+                                    <img src="<%= bundle.image %>"
+                                        alt="<%= bundle.title %>" class="w-full h-48 object-contain">
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 text-center"><%= bundle.title %></h3>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold text-blue-600"><%= typeof bundle.price === 'number' ? bundle.price.toFixed(2) : bundle.price %> EGP</span>
+                                    <% if (bundle.originalPrice) { %>
+                                        <span class="text-sm text-gray-500 line-through ml-2"><%= typeof bundle.originalPrice === 'number' ? bundle.originalPrice.toFixed(2) : bundle.originalPrice %> EGP</span>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="bundle-back absolute w-full h-full text-white rounded-xl p-6 flex flex-col justify-center">
+                                <h3 class="text-xl font-bold mb-4 text-center">Bundle Description</h3>
+                                <p class="text-white text-center flex-grow overflow-y-auto mb-6"><%= bundle.description %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="col-span-full text-center">No bundles found. Check back later!</p>
+            <% } %>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/bundles" class="bundle-btn">View All Bundles</a>
+        </div>
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>World Snacks Store</h1>
+        <p>Explore delicious snacks from all around the world. Taste the flavors of different cultures without leaving your home!</p>
+        <a href="/products" class="Hero_btn">Shop Now</a>
+    </div>
+
+    <div class="image-gallery">
+        <div class="gallery-item">
+            <img src="/images/countries/egypt.avif" alt="Egypt">
+            <div class="flag"><img src="/images/countries/egyptFlag.png" alt="Egypt Flag"></div>
+            <div class="info">
+                <a href="/products?country=egypt" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/usa.avif" alt="USA">
+            <div class="flag"><img src="/images/countries/usaFlag.png" alt="USA Flag"></div>
+            <div class="info">
+                <a href="/products?country=usa" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/japan.avif" alt="Japan">
+            <div class="flag"><img src="/images/countries/japanFlag.png" alt="Japan Flag"></div>
+            <div class="info">
+                <a href="/products?country=japan" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/mexico.avif" alt="Mexico">
+            <div class="flag"><img src="/images/countries/mexicoFlag.png" alt="Mexico Flag"></div>
+            <div class="info">
+                <a href="/products?country=mexico" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/germany.avif" alt="Germany">
+            <div class="flag"><img src="/images/countries/germanyFlag.png" alt="Germany Flag"></div>
+            <div class="info">
+                <a href="/products?country=germany" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/china.avif" alt="China">
+            <div class="flag"><img src="/images/countries/chinaFlag.png" alt="China Flag"></div>
+            <div class="info">
+                <a href="/products?country=china" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/korea.avif" alt="Korea">
+            <div class="flag"><img src="/images/countries/koreaFlag.png" alt="Korea Flag"></div>
+            <div class="info">
+                <a href="/products?country=korea" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="/images/countries/Uk.avif" alt="UK">
+            <div class="flag"><img src="/images/countries/ukFlag.png" alt="UK Flag"></div>
+            <div class="info">
+                <a href="/products?country=uk" class="shop-btn">Shop Snacks</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-wrapper">
+
+        <div class="about-text">
+            <h2>So what makes us <br><span>DIFFERENT?</span></h2>
+            <p>At NumNum Snack Store, we go beyond the ordinary! We explore continents to bring you exclusive treats from Japan, Mexico, UK, and more. Each snack tells a story of culture, flavor, and adventure.</p>
+
+            <a href="/explore" class="about_btn">explore more</a>
+        </div>
+
+        <div class="about-images">
+            <div class="img-box">
+                <img src="/images/homepage/snacksBackground.jpg" alt="International Snacks">
+            </div>
+            <div class="img-box">
+                <img src="/images/homepage/poppiBackground.jpg" alt="Tasty Treats">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="reviews-section">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews-container">
+        <% if (reviews && reviews.length > 0) { %>
+            <% reviews.forEach(function(review) { %>
+                <div class="review-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <%
+                                let profilePicSrc = review.user && review.user.profilePicture
+                                    ? review.user.profilePicture
+                                    : '/images/homepage/avatar_man.png';
+                            %>
+                            <img src="<%= profilePicSrc %>" alt="<%= review.user ? review.user.name : 'Anonymous' %>">
+                            <h3><%= review.user ? review.user.name : 'Anonymous' %></h3>
+                            <p><strong><%= review.reviewerType %></strong></p>
+                            <p class="review-text">"<%= review.reviewText %>"</p>
+                            <div class="rating">
+                                <%
+                                    // Function to render stars based on rating number
+                                    function renderStars(rating) {
+                                        let stars = '';
+                                        for (let i = 0; i < 5; i++) {
+                                            if (i < rating) {
+                                                stars += '★'; // Filled star
+                                            } else {
+                                                stars += '☆'; // Empty star (or just ' ')
+                                            }
+                                        }
+                                        return stars;
+                                    }
+                                %>
+                                <%= renderStars(review.rating) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No reviews available yet. Be the first to leave one!</p>
+        <% } %>
+    </div>
+    <div class="review-nav-buttons d-flex justify-content-center mt-4 gap-4">
+        <button class="btn btn-outline-primary btn-icon" id="reviewScrollLeftBtn">
+            <i class="fas fa-hand-point-left"></i>
+        </button>
+        <button class="btn btn-outline-primary btn-icon" id="reviewScrollRightBtn">
+            <i class="fas fa-hand-point-right"></i>
+        </button>
+    </div>
+</section>
+
+<section class="review-section">
+    <div class="review-container">
+      <div class="review-content">
+          <h2 class="review-title">Share Your Snack Experience!</h2>
+          <p class="review-description">We'd love to hear what you think about our delicious snacks. Your feedback helps us improve!</p>
+
+          <form class="review-form">
+              <div class="star-rating" data-rating="0">
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+              </div>
+              <textarea placeholder="Write your review here..." class="review-input" rows="5"></textarea>
+              <button type="submit" class="review-button">Submit Review</button>
+          </form>
+
+          <div class="reviews-list">
+              </div>
+      </div>
+    </div>
+</section>

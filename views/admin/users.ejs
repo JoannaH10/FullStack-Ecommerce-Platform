@@ -1,0 +1,57 @@
+<!-- Users Section -->
+<section id="users" class="content-section">
+    <div class="section-header">
+        <h2>Users</h2>
+    </div>
+    
+    <div class="table-container">
+        <div class="table-controls">
+            <input type="text" placeholder="Search users..." class="search-bar">
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr id="user-<%= user.id %>">
+                            <td>
+                                <div class="user-info">
+                                    <div class="avatar-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <p><%= user.name %></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><%= user.email %></td>
+                            <td><%= user.phone %></td>
+                            <td><%= user.role %></td>
+                            <td>
+                                <span class="status <%= user.status %>">
+                                    <%= user.status.charAt(0).toUpperCase() + user.status.slice(1) %>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" data-user-id="<%= user.id %>">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

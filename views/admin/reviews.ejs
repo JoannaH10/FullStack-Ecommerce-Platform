@@ -1,0 +1,34 @@
+<div class="stats-summary" id="statsContainer">
+            <div class="stat-card total">
+                <div class="stat-number" id="totalReviews">0</div>
+                <div class="stat-label">Total Reviews</div>
+            </div>
+            <div class="stat-card approved">
+                <div class="stat-number" id="approvedReviews">0</div>
+                <div class="stat-label">Approved</div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-number" id="pendingReviews">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card rejected">
+                <div class="stat-number" id="rejectedReviews">0</div>
+                <div class="stat-label">Rejected</div>
+            </div>
+        </div>
+
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">📋 All Reviews</button>
+            <button class="filter-btn" data-filter="approved">✅ Approved</button>
+            <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+            <input type="text" class="search-box" placeholder="🔍 Search reviews, users, or content..." id="searchInput">
+            <button class="filter-btn" onclick="refreshReviews()">🔄 Refresh</button>
+        </div>
+
+        <div id="reviewsContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                Loading reviews...
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,127 @@
+<div class="container" id="container">
+
+        <!-- Reset Password Form Container -->
+        <div class="form-container reset-password" id="reset-password">
+            <form>
+                <h1 class="header">Reset Password</h1>
+                <span class="body-txt">Enter your phone number and a new password</span>
+
+                <!-- Error container for Reset Password form - REMOVED, as alerts are used now -->
+                <!-- <div class="form-error-container reset-form-errors"></div> -->
+
+                <div class="input-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" placeholder="Phone Number" id="resetPhoneNumber">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="New Password" id="resetNewPassword">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" id="resetConfirmPassword">
+                </div>
+
+                <button class="button" type="submit">Update Password</button>
+            </form>
+        </div>
+
+        <!-- Sign Up Form Container -->
+        <div class="form-container sign-up sign-up-container">
+            <form class="form" id="signupForm">
+                <h1 class="header">Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="wave-icon"><img src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="Google"></a>
+                    <a href="#" class="wave-icon"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
+                </div>
+
+                <span class="body-txt">or use your email for registration</span>
+
+                <!-- Error container for Sign Up form - REMOVED, as alerts are used now -->
+                <!-- <div class="form-error-container signup-form-errors"></div> -->
+
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="fullName" placeholder="Full Name">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="phoneNumber" placeholder="Phone Number">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+
+                <br>
+                <button class="button" type="submit">Start Snacking</button>
+            </form>
+        </div>
+
+        <!-- Login Form Container -->
+        <div class="form-container login">
+            <form id="loginForm">
+                <h1 class="header">Log In</h1>
+                <div class="social-icons">
+                    <a href="#" class="wave-icon"><img src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="Google"></a>
+                    <a href="#" class="wave-icon"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
+                </div>
+                <span class="body-txt">or use your email password</span>
+
+                <!-- Error container for Login form - REMOVED, as alerts are used now -->
+                <!-- <div class="form-error-container login-form-errors"></div> -->
+
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Password">
+                </div>
+
+                <a href="#" id="forgot-password" class="body-txt">Forget Your Password?</a>
+                <button class="button" type="submit">Dig In</button>
+            </form>
+        </div>
+
+        <!-- Toggle Panels (for switching between login/signup UI) -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1 class="header">Welcome Back, Snack Lover!</h1>
+                    <p class="body-txt">Log in to continue your tasty journey with Num Num!</p>
+                    <button class="switch_buttons" id="login">Log In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1 class="header">Join the Snack Adventure!</h1>
+                    <p class="body-txt">Create an account and explore delicious treats from around the world!</p>
+                    <button class="switch_buttons" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Overlay -->
+    <div id="admin-login-overlay">
+        <!-- The actual modal box -->
+        <div id="admin-login-modal">
+            <h1><b>Admin Access</b></h1><br>
+            <p>Enter your Email and Password (from the regular login form), then the secret key.</p>
+            <input type="password" id="adminSecretKeyInput" placeholder="Admin Secret Key">
+            <button id="adminLoginSubmitBtn">Log In as Admin</button>
+            <!-- Error paragraph for Admin Modal - REMOVED, as alerts are used now -->
+            <!-- <p id="adminModalError"></p> -->
+            <button id="closeAdminModalBtn">&times;</button>
+        </div>
+    </div>

@@ -1,0 +1,271 @@
+/* Card Components */
+.card-container {
+    perspective: 1500px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    transform-style: preserve-3d;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-frontt, .card-backk {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.card-frontt::before, .card-backk::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: -1;
+}
+
+.card-frontt {
+    background-image: url('https://media.istockphoto.com/id/2055023629/photo/4k-beautiful-color-gradient-background-with-noise-abstract-pastel-holographic-blurred-grainy.jpg?s=612x612&w=0&k=20&c=l65_0xqN76oYzun9lKf_abnquQ7i8HF3pGkCnVbPKsE=');
+    z-index: 2;
+}
+
+.card-backk {
+    background-image: url('https://media.istockphoto.com/id/2055023629/photo/4k-beautiful-color-gradient-background-with-noise-abstract-pastel-holographic-blurred-grainy.jpg?s=612x612&w=0&k=20&c=l65_0xqN76oYzun9lKf_abnquQ7i8HF3pGkCnVbPKsE=');
+    transform: rotateY(180deg);
+}
+
+.card-magnetic-strip {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: rgba(0,0,0,0.7);
+}
+
+.card-cvv-strip {
+    position: relative;
+    height: 40px;
+    background: white;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-family: monospace;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.card-signature {
+    position: relative;
+    height: 30px;
+    background: repeating-linear-gradient(45deg, #efefef, #efefef 5px, white 5px, white 10px);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-style: italic;
+    color: #333;
+}
+
+.card-chip {
+    width: 50px;
+    height: 35px;
+    background: linear-gradient(135deg, #ffd700, #c0c0c0);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.card-chip i {
+    color: rgba(0,0,0,0.5);
+    font-size: 24px;
+}
+
+.card-number {
+    font-family: monospace;
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.card-holder, .card-expiry {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.card-brand {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-size: 36px;
+    opacity: 0.8;
+}
+
+.card-brand-back {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 36px;
+    opacity: 0.8;
+}
+
+.card-hologram {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 60px;
+    height: 40px;
+    background: linear-gradient(45deg,
+        rgba(255,0,0,0.5),
+        rgba(0,255,0,0.5),
+        rgba(0,0,255,0.5));
+    border-radius: 5px;
+    opacity: 0.7;
+}
+
+/* Payment Section Transitions */
+.payment-section {
+    transition: all 0.5s ease;
+    transform-origin: top;
+}
+
+.payment-section.active {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Input Highlights and Floating Labels */
+.input-highlight {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.input-highlight:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input-highlight.active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+}
+
+.floating-label {
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    color: #6b7280;
+    font-size: 12px;
+    pointer-events: none;
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.input-field:focus + .floating-label,
+.input-field:not(:placeholder-shown) + .floating-label {
+    transform: translateY(-30px);
+    opacity: 1;
+}
+
+/* Animations (Ensure these are defined if not using a framework that provides them) */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Specific styles for the search container, assuming it slides down from top */
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white; /* Or your desired background */
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure it's on top of other content */
+    transform: translateY(-100%); /* Initially hidden above the viewport */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+.search-container.active {
+    transform: translateY(0); /* Slides into view */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Navbar hidden state (if you have a .navbar class) */
+.navbar.hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+}

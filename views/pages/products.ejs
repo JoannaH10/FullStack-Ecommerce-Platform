@@ -1,0 +1,50 @@
+<section class="banner" style="position:relative;">
+    <img src="../images/banner/bannermain1.jpg" alt="Promotional Banner">
+</section>
+
+<div class="product-header">
+    <div class="header-title">Products</div>
+    <div class="menu" style="display: flex; flex-direction: row; align-items: center; gap: 1.5rem;">
+        <div class="item" style="order: 1; margin-right: auto;">
+            <a href="#" class="link">
+                <span>Filter By</span>
+                <svg viewBox="0 0 360 360" xml:space="preserve">
+                    <g id="SVGRepo_iconCarrier">
+                        <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
+                    </g>
+                </svg>
+            </a>
+            <div class="submenu">
+                <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-value="all">All</a>
+                </div>
+                <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-value="chips&crisps">Chips & Crisps</a>
+                </div>
+                <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-value="soda">Soda</a>
+                </div>
+                <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-value="chocolates">Chocolates</a>
+                </div>
+                <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-value="sweets">Sweets</a>
+                </div>
+            </div>
+        </div>
+        </div>
+        // <!-- Sort By Dropdown at the right-->
+<div class="menuu" style="display: flex; flex-direction: row; align-items: center; gap: 1.5rem;">        <select class="sort-by-dropdown" style="order: 2;">
+            <option value="" disabled selected>Sort By</option>
+            <option value="price-high-low">Price: High to Low</option>
+            <option value="price-low-high">Price: Low to High</option>
+        </select>
+    </div>
+</div>
+
+<div class="products-grid">
+    <div class="cards-container" id="products-container">
+        <!-- Cards will be rendered dynamically by JS, just like bundles page -->
+    </div>
+</div>
+<div id="pagination-controls"></div>

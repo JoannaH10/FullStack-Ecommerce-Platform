@@ -1,0 +1,251 @@
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------NAVBAR--------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+/* Flex container with three zones */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================
+   LEFT: NAVIGATION LINKS
+   ========================== */
+.navbar-left {
+  flex: 1; /* take all leftover space */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #1d4ed8; /* Match footer blue */
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  transform: scale(0.9);
+  color: #103a9f; /* Slightly darker blue for hover, matches .floating:hover */
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-center .logo-img {
+  height: 60px;
+  transition: transform 0.3s ease;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.navbar-center .logo-img:hover {
+  transform: scale(1.1);
+}
+
+
+.navbar-right {
+  flex: 1;                           
+  display: flex;
+  justify-content: flex-end;        
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-wrapper .icon {
+  font-size: 20px;
+  color: #1d4ed8; /* Match footer blue */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.search-wrapper .icon:hover {
+  transform: scale(1.1);
+  color: #103a9f; /* Match .floating:hover */
+}
+
+.search-container {
+  position: absolute;
+  top: 50%;
+  right: 100%;                     
+  transform: translateY(-50%);
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 10;
+}
+
+.search-container.active {
+  width: 180px;                    
+}
+
+.search-container .search-input {
+  width: 100%;
+  padding: 5px 12px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.navbar-right .icon:not(.search-wrapper .icon) {
+  font-size: 20px;
+  color: #1d4ed8; /* Match footer blue */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.navbar-right .icon:not(.search-wrapper .icon):hover {
+  transform: scale(1.1);
+  color: #1f00b8;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------FOOTER--------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Logo Styling - Targeting the specific image tag with its classes */
+/* The logo has classes 'w-16 h-16', which are Tailwind classes (64px x 64px).
+   We'll make it roughly 25% bigger (80px x 80px) and add more margin to the right. */
+.logo-animate img {
+    width: 90px; /* Increase from w-16 (64px) to 80px */
+    height: 90px; /* Increase from h-16 (64px) to 80px */
+    margin-right: 0.50rem; /* Increased space: This is equivalent to Tailwind's mr-5 (20px) */
+    /* No animation applied to the logo */
+}
+
+/* All Colors to be the Same - Targeting existing elements and overriding Tailwind where necessary */
+
+/* Base footer text color and background */
+.bg-white {
+    background-color: #ffffff; /* Keep footer background white */
+}
+.text-blue-600 {
+    color: #1d4ed8 !important; /* Set the base text color for the entire footer to #1d4ed8, override Tailwind */
+}
+
+/* Main title "International Snack Store" */
+.text-2xl.font-bold {
+    color: #1d4ed8; /* Ensure the main title is this blue */
+}
+
+/* "Snack" span in the title */
+.text-blue-400 { /* This class is on the 'Snack' span */
+    color: #1d4ed8 !important; /* Override Tailwind for this specific span */
+}
+
+/* The paragraph text "Discover the world's flavors..." */
+.text-blue-500 {
+    color: #1d4ed8 !important; /* Override Tailwind for the description text */
+}
+
+/* Social media icons text color and background */
+.btn-hover.bg-blue-60 { /* Assuming bg-blue-60 is meant to be a very light blue or transparent */
+    background-color: transparent !important; /* Make social button background transparent */
+}
+.btn-hover.text-blue-600 {
+    color: #1d4ed8 !important; /* Ensure social icons are this blue */
+}
+.btn-hover:hover {
+    background-color: rgba(29, 78, 216, 0.1); /* Subtle hover background for social icons */
+    color: #1d4ed8 !important; /* Keep icon color consistent on hover */
+}
+
+/* Quick Bites, Need Help?, About Us headings */
+.text-lg.font-semibold {
+    color: #1d4ed8; /* Ensure section headings are this blue */
+}
+
+/* Bottom bar copyright text */
+.text-blue-400.hover\:text-blue-600 { /* For the copyright text */
+    color: #1d4ed8 !important; /* Set initial color */
+}
+.text-blue-400.hover\:text-blue-600:hover { /* For the copyright text on hover */
+    color: #1d4ed8 !important; /* Keep the same color on hover */
+}
+
+
+/* Existing CSS rules for quick/help/about links, adjusted for color consistency and hover states */
+.quick-link,
+.help-link,
+.about-link {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 0.250rem;
+  transition: all 0.3s ease;
+  color: #1d4ed8; /* Set base color for these links */
+}
+.quick-link span,
+.help-link span,
+.about-link span {
+  margin-right: 4px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: #1d4ed8; /* Ensure the arrow also inherits the color */
+}
+.group:hover span {
+  opacity: 1;
+}
+.quick-link:hover,
+.help-link:hover,
+.about-link:hover {
+  transform: translateX(2px);
+  /* Use a lighter shade for the background on hover, but still within the blue family or transparent */
+  background-color: rgba(29, 78, 216, 0.1); /* Using a transparent version of the main blue for hover background */
+  color: #1d4ed8; /* Ensure hover text color remains consistent */
+}
+.footer-link { /* This class is defined but not explicitly used in your current EJS for quick/help/about links */
+  color: #1d4ed8; /* Ensure any link using this class has this color */
+  transition: color 0.3s ease;
+}
+.footer-link:hover {
+  transform: translateY(-5px) scale(1.05);
+  color: #1d4ed8; /* Keep the color the same on hover */
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+/* Floating snack button (cart button) colors and animation */
+.floating {
+  animation: floating 3s ease-in-out infinite; /* This is where the animation is applied to the cart button */
+  background-color: #1d4ed8; /* Set the background to the desired blue */
+  color: #ffffff; /* Ensure text/icon is white on this blue background */
+}
+.floating:hover {
+    background-color: #103a9f; /* Slightly darker blue on hover for the button */
+}
+.floating a {
+    color: #ffffff; /* Ensure the cart icon link is white */
+}
+
+/* Keyframes for the floating animation (used by the cart button) */
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}

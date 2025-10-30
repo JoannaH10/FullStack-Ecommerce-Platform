@@ -1,0 +1,225 @@
+<div class="flex flex-col lg:flex-row gap-8 mt-20">
+    <!-- Left Column - Order Summary -->
+    <div class="lg:w-2/3">
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-blue-500 mb-4">Order Summary</h2>
+            <div class="space-y-4 mb-6" id="orderItems">
+                <!-- Order items will be dynamically loaded here by JavaScript -->
+            </div>
+
+            <div class="bg-blue-100 p-4 rounded-lg border border-blue-300">
+        <div class="flex justify-between items-center py-1">
+          <span class="text-gray-700">Subtotal</span>
+          <span class="font-medium" id="subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center py-1">
+          <span class="text-gray-700">International Shipping</span>
+          <span class="font-medium" id="shipping">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center py-1">
+          <span class="text-gray-700">Import Fees</span>
+          <span class="font-medium" id="fees">$0.00</span>
+        </div>
+        <div class="flex justify-between font-bold text-lg text-blue-500 pt-2 border-t border-blue-300">
+          <span>Total</span>
+          <span id="total">$0.00</span>
+        </div>
+      </div>
+
+            <div class="mt-4">
+                <button id="addItemBtn" class="bg-blue-100 hover:bg-blue-200 text-blue-600 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                    <i class="fas fa-plus mr-2"></i>Add Another Item
+                </button>
+            </div>
+        </div>
+
+        <!-- Shipping Information -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-blue-500 mb-4">Shipping Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Added id to containers for shake effect and to inputs for data collection -->
+                <div class="relative input-container" id="shippingFirstNameContainer">
+                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="Alex" id="shippingFirstName">
+                    <label class="floating-label">First Name</label>
+                </div>
+                <div class="relative input-container" id="shippingLastNameContainer">
+                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="Johnson" id="shippingLastName">
+                    <label class="floating-label">Last Name</label>
+                </div>
+                <div class="md:col-span-2 relative input-container" id="shippingAddressLineContainer">
+                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="123 Snack Street" id="shippingAddressLine">
+                    <label class="floating-label">Address</label>
+                </div>
+                <div class="relative input-container" id="shippingCityContainer">
+                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="New York" id="shippingCity">
+                    <label class="floating-label">City</label>
+                </div>
+                <div class="relative input-container" id="shippingPostalCodeContainer">
+                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="10001" id="shippingPostalCode">
+                    <label class="floating-label">ZIP Code</label>
+                </div>
+                <div class="md:col-span-2 relative input-container" id="shippingCountryContainer">
+                    <!-- IMPORTANT: Added id="shippingCountry" and an option for Egypt -->
+                    <select id="shippingCountry" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field">
+                        <option value="United States">United States</option>
+                        <option value="Egypt">Egypt</option> <!-- Added Egypt option -->
+                        <option value="Germany">Germany</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="mexico">mexico</option>
+                        <option value="Japan">Japan</option>
+                        
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <label class="floating-label">Country</label>
+                </div>
+                <div class="md:col-span-2 relative input-container" id="shippingPhoneContainer">
+                    <input type="tel" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" placeholder=" " value="+1234567890" id="shippingPhone">
+                    <label class="floating-label">Phone Number</label>
+                </div>
+                <div class="md:col-span-2 relative input-container" id="specialInstructionsContainer">
+                    <textarea class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 input-field" rows="3" placeholder=" " id="specialInstructions"></textarea>
+                    <label class="floating-label">Special Instructions</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Payment -->
+    <div class="lg:w-1/3">
+        <div class="bg-white rounded-xl shadow-lg p-6 sticky top-4 payment-section" id="paymentSection">
+            <h2 class="text-xl font-bold text-blue-500 mb-4">Payment Method</h2>
+
+            <!-- Payment Method Selection -->
+            <div class="space-y-3 mb-6">
+                <div class="payment-method border-2 border-blue-300 rounded-xl p-4 cursor-pointer active bg-blue-100" id="creditCardOption">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-credit-card text-blue-500"></i>
+                        </div>
+                        <span class="font-semibold text-blue-700">Credit/Debit Card</span>
+                    </div>
+                </div>
+
+                <div class="payment-method border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-blue-300" id="cashOption">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-money-bill-wave text-blue-500"></i>
+                        </div>
+                        <span class="font-semibold text-blue-700">Cash on Delivery</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credit Card Form (visible by default) -->
+            <div id="creditCardForm">
+                <div class="card-container mb-6">
+                    <div class="card" id="creditCard">
+                        <!-- Front of the card -->
+                        <div class="card-frontt">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-sm">Global Bites</span>
+                                </div>
+                                <div class="card-number" id="displayCardNumber">•••• •••• •••• ••••</div>
+                            </div>
+                            <div class="card-details">
+                                <div class="card-holder" id="displayCardHolder">FULL NAME</div>
+                                <div class="card-expiry" id="displayCardExpiry">MM/YY</div>
+                            </div>
+                            <i class="fab fa-cc-visa card-brand" id="cardBrandIcon"></i>
+                        </div>
+
+                        <!-- Back of the card -->
+                        <div class="card-backk">
+                            <div class="card-magnetic-strip"></div>
+                            <div class="card-cvv-strip" id="displayCardCVV">•••</div>
+                            <div class="card-signature">Authorized Signature</div>
+                            <div class="card-hologram"></div>
+                            <i class="fab fa-cc-visa card-brand-back" id="cardBrandIconBack"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corrected IDs and added parent containers for shake effect -->
+                <div class="mb-4 relative input-highlight" id="cardNumberContainer">
+                    <input type="text" id="cardNumber" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 input-field" placeholder="1234 5678 9012 3456" maxlength="19">
+                    <label class="floating-label">Card Number</label>
+                </div>
+
+                <div class="mb-4 relative input-highlight" id="cardHolderContainer">
+                    <input type="text" id="cardHolder" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 input-field" placeholder="As it appears on your card">
+                    <label class="floating-label">Card Holder Name</label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="relative input-highlight" id="cardExpiryContainer">
+                        <input type="text" id="cardExpiry" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 input-field" placeholder="MM/YY" maxlength="5">
+                        <label class="floating-label">Expiration Date</label>
+                    </div>
+                    <div class="relative input-highlight" id="cardCVVContainer">
+                        <input type="text" id="cardCVV" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 input-field" placeholder="•••" maxlength="4"
+                            onfocus="flipCard(true)" onblur="flipCard(false)">
+                        <label class="floating-label">CVV</label>
+                        <div class="absolute right-3 top-3 text-gray-400 cursor-pointer" onclick="showCVVTooltip()">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <input type="checkbox" id="saveCard" class="mr-2 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                    <label for="saveCard" class="text-gray-700">Save card for future purchases</label>
+                </div>
+            </div>
+
+            <!-- Cash on Delivery Form (hidden by default) -->
+            <div id="cashForm" class="hidden">
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-200">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-blue-600 mt-1 mr-2"></i>
+                        <p class="text-sm text-blue-800">Please have exact change ready. Our delivery partner will collect payment when your international snacks arrive.</p>
+                    </div>
+                </div>
+
+                <!-- Added id to textarea for data collection and parent container for shake effect -->
+                <div class="mb-4 relative input-container" id="deliveryInstructionsContainer">
+                    <textarea class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 input-field" rows="3" placeholder=" " id="deliveryInstructions"></textarea>
+                    <label class="floating-label">Delivery Instructions</label>
+                </div>
+            </div>
+
+            <button id="placeOrderBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center shadow-lg pulse-animation">
+                <span>Place Order</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+
+            <div class="mt-4 text-center text-sm text-gray-500">
+                <p>By placing your order, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a></p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-center">
+                <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+                <span class="text-sm text-gray-600">Secure Payment Processing</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CVV Tooltip -->
+<div id="cvvTooltip" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-6 max-w-sm relative">
+        <button onclick="hideCVVTooltip()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3 class="font-bold text-lg mb-2">Where to find your CVV?</h3>
+        <p class="text-gray-700 mb-4">The CVV is a 3 or 4-digit number on your card that provides extra security.</p>
+        <div class="flex items-center mb-2">
+            <i class="fas fa-credit-card mr-2 text-blue-500"></i>
+            <span>Visa/Mastercard: 3 digits on back</span>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-credit-card mr-2 text-blue-500"></i>
+            <span>American Express: 4 digits on front</span>
+        </div>
+    </div>
+</div>

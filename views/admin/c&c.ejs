@@ -1,0 +1,201 @@
+<section id="countries" class="content-section">
+  <div class="section-header">
+    <h2>Countries</h2>
+    <button class="add-country-btn">+ Add Country</button>
+  </div>
+
+  <div class="country-table-container">
+    <div class="country-table-controls">
+      <input type="text" placeholder="Search country..." class="country-search-bar">
+      <select class="country-filter">
+        <option>All Countries</option>
+        <% countries.forEach(country => { %>
+          <option><%= country.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="country-table-wrapper">
+      <table class="country-data-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% countries.forEach(country => { %>
+            <tr data-id="<%= country._id %>">
+              <td>
+                <div class="country-info">
+                  <img src="<%= country.flagImage || 'https://via.placeholder.com/40?text=?' %>" alt="Flag">
+                  <div>
+                    <p><%= country.name %></p>
+                    <p>SKU: <%= country.code %></p>
+                  </div>
+                </div>
+              </td>
+              <td><%= country.stock || 0 %></td>
+              <td>
+                <span class="country-status <%= country.status === 'Active' ? 'active' : 'inactive' %>">
+                  <%= country.status %>
+                </span>
+              </td>
+              <td>
+                <button class="edit-country-btn"><i class="fas fa-edit"></i></button>
+                <button class="delete-country-btn" data-id="<%= country._id %>" title="Delete Country">
+  <i class="fas fa-trash-alt"></i>
+</button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="country-table-footer">
+      <p>Showing <%= countries.length %> of <%= countries.length %> results</p>
+      <div class="country-pagination">
+        <button>Previous</button>
+        <button class="active">1</button>
+        <button>Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<div id="addCountryForm" class="modal">
+  <h4>Add New Country</h4>
+
+  <label for="countryName">Country Name:</label><br>
+  <input type="text" id="countryName" class="admin-input-box" placeholder="e.g., United States"><br>
+
+  <label for="countryCode">Country Code (SKU):</label><br>
+  <input type="text" id="countryCode" class="admin-input-box" placeholder="e.g., US"><br>
+
+  <label for="flagUpload">Upload Flag:</label><br>
+  <input type="file" id="flagUpload" accept="image/*" class="admin-input-box file-input"><br>
+
+  <div id="flagPreview" class="flag-preview"></div>
+  
+  <br><br>
+  <button id="addCountrySubmit" class="submit-btn">Add Country</button>
+  <button id="closeModal" class="close-btn">Close</button>
+</div>
+
+<section id="categories" class="content-section">
+  <div class="section-header">
+    <h2>Categories</h2>
+    <button class="add-category-btn">+ Add Category</button>
+  </div>
+
+  <div class="category-table-container">
+    <div class="category-table-controls">
+      <input type="text" placeholder="Search category..." class="category-search-bar">
+      <select class="category-filter">
+        <option>All Categories</option>
+        <% categories.forEach(category => { %>
+          <option><%= category.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="category-table-wrapper">
+      <table class="category-data-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (categories.length > 0) { %>
+            <% categories.forEach(category => { %>
+              <tr>
+                <td>
+                  <div class="category-info">
+                    <img src="<%= category.image || 'https://via.placeholder.com/40?text=?' %>" alt="Category">
+                    <div>
+                      <p><%= category.name %></p>
+                      <p>SKU: <%= category.code || 'N/A' %></p>
+                    </div>
+                  </div>
+                </td>
+                <td><%= category.stock || 0 %></td>
+                <td>
+                  <span 
+                            class="category-status <%= category.status === 'Active' ? 'active' : 'inactive' %>" 
+                            data-id="<%= category._id %>" 
+                            style="cursor: pointer;"
+                            title="Click to toggle status"
+                            >
+                            <%= category.status %>
+                        </span>
+
+                </td>
+                <td>
+                  <button class="edit-category-btn"><i class="fas fa-edit"></i></button>
+                            <button class="delete-category-btn" data-id="<%= category._id %>" title="Delete Category">
+                            <i class="fas fa-trash-alt"></i>
+                            </button>          
+                    </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr><td colspan="4">No categories available.</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="category-table-footer">
+      <p>Showing <%= categories.length %> of <%= categories.length %> result(s)</p> 
+      <div class="category-pagination">
+        <button>Previous</button>
+        <button class="active">1</button>
+        <button>Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div id="addCategoryForm" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="closeAddCategoryModal">&times;</span>
+        <h2>Add New Category</h2>
+        <form>
+            <div class="form-group">
+                <label for="categoryName">Category Name:</label>
+                <input type="text" id="categoryName" required>
+            </div>
+            <div class="form-group">
+                <label for="categoryIcon">Icon (e.g., Font Awesome class):</label>
+                <input type="text" id="categoryIcon" placeholder="e.g., fas fa-tshirt">
+            </div>
+            <div class="form-group">
+                <label for="categoryColor">Color (Hex):</label>
+                <input type="text" id="categoryColor" placeholder="#RRGGBB">
+            </div>
+            <div class="form-group">
+                <label for="categoryStock">Initial Stock:</label>
+                <input type="number" id="categoryStock" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="categoryStatus">Status:</label>
+                <select id="categoryStatus">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+            <button type="submit" id="addCategorySubmit">Add Category</button>
+        </form>
+    </div>
+</div>

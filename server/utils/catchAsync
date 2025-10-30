@@ -1,0 +1,18 @@
+// utils/catchAsync.js
+
+/**
+ * Higher-order function to wrap async Express route handlers.
+ * It catches any errors that occur within the async function and
+ * passes them to Express's error-handling middleware (`next`).
+ * This avoids repetitive try-catch blocks in every async route/controller function.
+ *
+ * @param {Function} fn - The async function (controller method) to wrap.
+ * @returns {Function} - A new function that Express can use as a route handler.
+ */
+const catchAsync = (fn) => (req, res, next) => {
+    // Call the function and catch any promise rejections (errors)
+    // and pass them to the next middleware (which will be the error handler).
+    Promise.resolve(fn(req, res, next)).catch(next);
+};
+
+module.exports = catchAsync;

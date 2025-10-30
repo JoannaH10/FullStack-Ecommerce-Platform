@@ -1,0 +1,364 @@
+:root {
+    --primary-color: #3f51b5; /* Indigo */
+    --primary-dark: #303f9f;
+    --accent-color: #ff4081; /* Pink accent */
+    --background-light: #f8f9fa; /* Light grey background */
+    --background-white: #ffffff;
+    --text-color: #343a40; /* Dark grey for text */
+    --border-color: #dee2e6;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --info-color: #007bff;
+}
+
+/* --- Base Body & Typography --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Container for overall layout --- */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--background-white);
+    padding: 25px 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+}
+
+/* --- Header Section --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+}
+
+.admin-nav button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-nav button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.admin-nav button:active {
+    transform: translateY(0);
+}
+
+/* --- Section Display (active/inactive) --- */
+.admin-section {
+    display: none;
+    padding-top: 15px; /* Spacing for active sections */
+}
+
+.admin-section.active {
+    display: block;
+}
+
+/* --- Form Styling --- */
+#product-form h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 500;
+}
+
+.form-group { /* Added class for EJS */
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+
+#product-form input[type="text"],
+#product-form input[type="number"],
+#product-form textarea,
+#product-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    color: var(--text-color);
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#product-form input[type="text"]:focus,
+#product-form input[type="number"]:focus,
+#product-form textarea:focus,
+#product-form select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+    outline: none;
+}
+
+#product-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.form-actions button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+.form-actions button[type="submit"] { /* Save Product button */
+    background-color: var(--success-color);
+    color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-actions button[type="button"] { /* Cancel button */
+    background-color: var(--error-color); /* Red */
+    color: white;
+}
+
+.form-actions button[type="button"]:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Product Table Styling --- */
+#product-table-section h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 500;
+}
+
+#product-table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--background-white);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners on table */
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+#product-table-section th,
+#product-table-section td {
+    border: 1px solid var(--border-color);
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+}
+
+#product-table-section th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#product-table-section tr:nth-child(even) {
+    background-color: #f6f8fa; /* Lighter stripe */
+}
+
+#product-table-section tr:hover {
+    background-color: #e9ecef; /* Hover effect for rows */
+}
+
+#product-table-section .action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+#product-table-section .action-buttons button {
+    background-color: var(--info-color); /* Blue for Edit */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#product-table-section .action-buttons button.delete {
+    background-color: var(--error-color); /* Red for Delete */
+}
+
+#product-table-section .action-buttons button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+#product-table-section .action-buttons button.delete:hover {
+    background-color: #bd2130;
+}
+
+#product-table-section img {
+    max-width: 60px; /* Slightly larger image */
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+
+/* --- Messages (Loading, Empty, Success, Error) --- */
+.message {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+#loading-products-message, #empty-products-message {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .admin-nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    #product-table-section th,
+    #product-table-section td {
+        padding: 10px 12px;
+        font-size: 0.85em;
+    }
+
+    /* Stack form fields on small screens */
+    #product-form .form-grid {
+        display: block; /* Override grid for single column */
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-nav button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+/* In your public/css/admin.css file */
+
+/* By default, hide all sections that have the 'admin-section' class */
+.admin-section {
+    display: none;
+}
+
+/* Only show the section that has BOTH 'admin-section' and 'active' classes */
+.admin-section.active {
+    display: block; /* Use 'block' for a typical section, or 'flex' if you're using flexbox for your main layout within these sections */
+}
+
+/* Optional but recommended: styles for your navigation buttons */
+/* This will visually show which button is currently selected */
+.admin-nav button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.admin-nav button.active {
+    background-color: #007bff; /* Example: a blue background for the active button */
+    color: white;
+    border-color: #007bff;
+}

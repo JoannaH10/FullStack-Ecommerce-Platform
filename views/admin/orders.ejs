@@ -1,0 +1,141 @@
+<!-- orders.ejs -->
+<section id="orders" class="content-section">
+    <div class="section-header">
+        <h2>Orders</h2>
+    </div>
+    
+    <% if (messages.success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages.success %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+    <% if (messages.error) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages.error %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+    
+    <div class="table-container">
+        <div class="table-controls">
+            <form method="GET" action="/admin/orders">
+                <input 
+                    type="text" 
+                    name="search" 
+                    placeholder="Search orders..." 
+                    class="search-bar"
+                    value="<%= query.search || '' %>"
+                >
+                <select name="status" class="status-filter">
+                    <option value="">All Statuses</option>
+                    <option value="pending" <%= query.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                    <option value="processing" <%= query.status === 'processing' ? 'selected' : '' %>>Processing</option>
+                    <option value="shipped" <%= query.status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                    <option value="delivered" <%= query.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                    <option value="cancelled" <%= query.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                </select>
+            </form>
+        </div>
+        
+        <div class="table-wrapper">
+            <% if (orders.length === 0) { %>
+                <div class="no-orders">No orders found</div>
+            <% } else { %>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order => { %>
+                            <tr data-id="<%= order._id %>">
+                                <td>#<%= order._id.toString().substring(18, 24) %></td>
+                                <td>
+                                    <%= (order.dateOrdered || new Date()).toLocaleDateString('en-US', { 
+                                        year: 'numeric', 
+                                        month: 'short', 
+                                        day: 'numeric' 
+                                    }) %>
+                                </td>
+                                <td>
+                                    <div class="customer-info">
+                                        <span><%= order.user ? order.user.name : 'Deleted User' %></span>
+                                        <% if (order.user && order.user.email) { %>
+                                            <small class="text-muted"><%= order.user.email %></small>
+                                        <% } %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <%= order.currency || '₹' %> <%= (order.total || 0).toFixed(2) %>
+                                </td>
+                                <td>
+                                    <span class="status <%= order.orderStatus || 'pending' %>" 
+                                          data-id="<%= order._id %>"
+                                          data-current-status="<%= order.orderStatus || 'pending' %>">
+                                        <%= (order.orderStatus || 'pending').charAt(0).toUpperCase() + (order.orderStatus || 'pending').slice(1) %>
+                                    </span>
+                                </td>
+                                <td>
+                                    
+                                    <button class="edit-order-btn" data-id= "/admin/orders/<%= order._id %>"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-order-btn" data-id="<%= order._id %>" title="Delete Order">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu">
+                                            <button 
+                                                type="button" 
+                                                class="dropdown-item status-update-btn"
+                                                data-id="<%= order._id %>"
+                                                data-status="processing"
+                                            >
+                                                Mark as Processing
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                class="dropdown-item status-update-btn"
+                                                data-id="<%= order._id %>"
+                                                data-status="shipped"
+                                            >
+                                                Mark as Shipped
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                class="dropdown-item status-update-btn"
+                                                data-id="<%= order._id %>"
+                                                data-status="delivered"
+                                            >
+                                                Mark as Delivered
+                                            </button>
+                                            <div class="dropdown-divider"></div>
+                                            <button 
+                                                type="button" 
+                                                class="dropdown-item status-update-btn text-danger"
+                                                data-id="<%= order._id %>"
+                                                data-status="cancelled"
+                                            >
+                                                Cancel Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </div>
+</section>

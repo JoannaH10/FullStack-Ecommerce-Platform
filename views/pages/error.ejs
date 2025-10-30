@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %> | Global Snacks</title> <link rel="stylesheet" href="/css/error.css"> </head>
+<body>
+  <div class="background-shape">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="none">
+      <path d="M0,200 C150,100 350,300 500,200 C650,100 800,300 800,0 L800,400 L0,400 Z" fill="#dff0ff"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <% if (statusCode === 404) { %>
+      <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="Crying cookie" class="main-emoji">
+    <% } else { %>
+      <img src="https://cdn-icons-png.flaticon.com/512/1791/1791338.png" alt="Shocked face" class="main-emoji">
+    <% } %>
+
+    <h1><%= statusCode %></h1> <h2><%= headline %></h2> <p><%= message %></p>
+    <% if (isAdminPanel) { %>
+        <a href="/admin/dashboard" class="errorbtn">Back to Dashboard</a>
+    <% } else { %>
+        <a href="/" class="errorbtn">Back to Homepage</a>
+    <% } %>
+  </div>
+
+  <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" class="floating snack1" alt="Snack 1">
+  <img src="https://cdn-icons-png.flaticon.com/512/857/857681.png" class="floating snack2" alt="Snack 2">
+
+  <% if (process.env.NODE_ENV === 'development' && error && Object.keys(error).length > 0) { %>
+    <div class="error-details">
+        <h3>Error Details (Development Mode)</h3>
+        <pre><%= JSON.stringify(error, null, 2) %></pre>
+    </div>
+  <% } %>
+
+</body>
+</html>

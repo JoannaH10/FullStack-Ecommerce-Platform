@@ -1,0 +1,114 @@
+<div class="container">
+    <header>
+        <h1>Product Admin Panel</h1>
+        <nav class="admin-nav">
+            <button id="view-products-btn" class="nav-button">View All Products</button>
+            <button id="add-product-btn" class="nav-button">Add New Product</button>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <button id="search-button">Search</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="product-table-section" class="admin-section active">
+        <h2>Current Products</h2>
+        
+        <p id="empty-products-message" style="display:none;">No products found. Click "Add New Product" to add some.</p>
+        <div id="product-list-message" class="message" style="display:none;"></div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Country</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="product-table-body">
+                <% products.forEach(product => { %>
+                <tr>
+                    <td><%= product._id.toString().slice(-5) %></td>
+                    <td><img src="<%= product.imageUrl || 'https://via.placeholder.com/60' %>" alt="<%= product.name %>" style="width:60px;height:60px;object-fit:cover;"></td>
+                    <td><%= product.name %></td>
+                    <td><%= product.brand %></td>
+                    <td><%= product.categoryName %></td>
+                    <td><%= product.countryName %></td>
+                    <td><%= product.price ? product.price.toFixed(2) : 'N/A' %> EGP</td>
+                    <td><%= product.description ? product.description.substring(0, 50) + '...' : 'N/A' %></td>
+                    <td><%= product.stock %></td>
+                    <td class="action-buttons">
+                        <button class="btn btn-edit" data-id="<%= product._id %>">Edit</button>
+                        <button class="btn btn-delete" data-id="<%= product._id %>">Delete</button>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="product-form-section" class="admin-section">
+        <h2>Add New Product</h2>
+        <div id="product-form-message" class="message" style="display:none;"></div>
+
+        <form id="product-form" class="form-grid">
+            <input type="hidden" id="product-id">
+
+            <div class="form-group">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-brand">Brand:</label>
+                <input type="text" id="product-brand" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-category">Category:</label>
+                <select id="product-category" required>
+                    <option value="">Select Category</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-country">Country:</label>
+                <select id="product-country" required>
+                    <option value="">Select Country</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-price">Price (EGP):</label>
+                <input type="number" id="product-price" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-countInStock">Count In Stock:</label>
+                <input type="number" id="product-countInStock" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-description">Description:</label>
+                <textarea id="product-description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="product-image">Image URL:</label>
+                <input type="text" id="product-image" placeholder="Provide a direct URL to the product image (e.g., from an image hosting service).">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Save Product</button>
+                <button type="button" id="cancel-form-btn">Cancel</button>
+            </div>
+        </form>
+    </section>
+</div>
