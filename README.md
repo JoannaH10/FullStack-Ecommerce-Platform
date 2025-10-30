@@ -26,7 +26,7 @@ To run this project locally, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [YOUR REPO URL HERE]
+    git clone [https://github.com/JoannaH10/FullStack-Ecommerce-Platform]
     cd [web back new products]
     ```
 
